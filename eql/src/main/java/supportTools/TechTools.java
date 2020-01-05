@@ -1,7 +1,8 @@
 package supportTools;
 
-import java.io.File;
+import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -67,6 +68,10 @@ public class TechTools {
 		FileUtils.copyFile(SrcFile, DestFile);
 	}
 	
-	
+	public void checkColor (WebElement e, String colCode) throws Exception{
+		String color = e.getCssValue("color");
+		//String color = e.getCssValue("background-color");
+		assertEquals("Erreur de couleur" ,color, colCode);
+	}
 
 }

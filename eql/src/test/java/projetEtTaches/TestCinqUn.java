@@ -1,4 +1,4 @@
-package project1.eql;
+package projetEtTaches;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
