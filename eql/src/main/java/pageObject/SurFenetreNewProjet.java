@@ -36,19 +36,6 @@ public class SurFenetreNewProjet {
 	@FindBy (xpath =" //td[contains(text(),'Accepter')]")  
 	public WebElement btnValider;
 	
-	/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> a deplacer dans HomePage<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
- 	@FindBy (xpath="//td[contains(text(),'Planification de projet')]")
-	WebElement boutonPlanificationDeProjet;
-	@FindBy (xpath="//td[contains(text(),'Détail du projet')]") 
-	WebElement boutonDetailDuProjet;
-	@FindBy (xpath="//td[contains(text(),'Chargement des ressources')]") 
-	WebElement boutonChangementDesRessources;
-	@FindBy (xpath="//td[contains(text(),'Allocation avancée')]") 
-	WebElement boutonAllocationAvancee;
-	@FindBy (xpath="//td[contains(text(),'Tableau de bord')]") 
-	WebElement boutonTableauDeBord;
-	 */
-	
 	public HomePage clickNewProject(WebDriver driver) {
 		buttonNewProject.click();
 		  return PageFactory.initElements(driver, HomePage.class);
