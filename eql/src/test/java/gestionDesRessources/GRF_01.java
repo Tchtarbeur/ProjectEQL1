@@ -66,6 +66,7 @@ public class GRF_01 {
 		
 		// Vérifier Bloc "Utilisateur lié"
 		
+		
 		// Vérifier les boutons "enregistrer", "Sauver et continuer" et "annuler"
 		assertTrue(creerPart.btnAnnuler.isEnabled());
 		assertTrue(creerPart.btnEnregistrer.isEnabled());

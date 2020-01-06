@@ -47,14 +47,14 @@ public class PageCreerParicipant {
 	public WebElement champMotPasse;
 	
 	// Bouton "enregistrer"
-	@FindBy (xpath="")
+	@FindBy (xpath="//td[contains(text(),'Enregistrer')]")
 	public WebElement btnEnregistrer;
-	
+			
 	// Bouton "Annuler"
-	@FindBy (xpath="")
+	@FindBy (xpath="//td[contains(text(),'Annuler')]")
 	public WebElement btnAnnuler;
-	
+			
 	// Bouton "Sauver et Continuer"
-	@FindBy (xpath="")
+	@FindBy (xpath="//td[contains(text(),'Sauver et continuer')]")
 	public WebElement btnSauverContinuer;
 }
