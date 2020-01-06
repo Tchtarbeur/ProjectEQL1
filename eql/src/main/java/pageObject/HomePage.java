@@ -99,5 +99,11 @@ public class HomePage {
 			calendriers.click();
 			return PageFactory.initElements(driver, PageCalendrier.class);
 		}
-
+		// Accés page "Projet"
+		public PageProjet allerSurPageProjet (WebDriver driver) {
+			Actions a = new Actions(driver);
+			a.moveToElement(calendrier).build().perform();
+			projet.click();
+			return PageFactory.initElements(driver, PageProjet.class);
+		}
 }
