@@ -11,6 +11,7 @@ public class HomePage {
 	// Menu "Calendrier"
 	@FindBy (xpath="//button[contains(text(),'Calendrier')]")
 	public WebElement calendrier;
+	
 	// Sous-menu "Projet"
 	@FindBy (xpath="//a[contains(text(),'Projet')]")
 	public WebElement projet;
@@ -31,9 +32,13 @@ public class HomePage {
 	// Sous-Menu "Machines"
 	@FindBy (xpath="//a[contains(text(),'Machines')]")
 	public WebElement machines;
-	// Sous-Menu "Machines"
+	// Sous-Menu "Critères"
 	@FindBy (xpath="//a[contains(text(),'Critères')]")
 	public WebElement criteres;
+	//Sous-menu "Calendriers"
+	@FindBy (xpath="//a[contains(text(),'Calendriers')]")
+	public WebElement calendriers;
+	//href="/libreplan/calendars/calendars.zul"
 	
 	// Bouton "Planification de projet"
 	@FindBy (xpath="//td[contains(text(),'Planification de projet')]")
@@ -86,6 +91,13 @@ public class HomePage {
 		criteres.click();
 		return PageFactory.initElements(driver, PageCriteres.class);
 	}
-
+	
+	// Accés page "Calendrier"
+		public PageCalendrier allerSurPageCal (WebDriver driver) {
+			Actions a = new Actions(driver);
+			a.moveToElement(ressources).build().perform();
+			calendriers.click();
+			return PageFactory.initElements(driver, PageCalendrier.class);
+		}
 
 }
