@@ -78,6 +78,10 @@ public class PageCreerTypeCritere {
 	@FindBy (xpath="//span[contains(text(),'Type de critère \"Test bouton [Sauver et continuer]\" enregistré')]")
 	public WebElement messageCreationOK;
 	
+	// Message test création ok aprés sauver et continuer 2
+		@FindBy (xpath="//span[contains(text(),'Type de critère \"Test bouton [Sauver et continuer] 2\" enregistré')]")
+		public WebElement messageCreationOK2;
+	
 	// Enregistrer un nouveau type de critère
 	public PageCriteres creationFin (WebDriver driver) {
 		Actions a = new Actions(driver);

@@ -30,12 +30,12 @@ public class CRI_01 {
 		driver = TechTools.chooseBrowser(EBrowser.firefox);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
-/*
+
 	@After
 	public void tearDown() {
 		driver.quit();
 	}
-	*/
+
 	@Test
 	public void test() throws InterruptedException {
 		driver.get(url);
@@ -99,7 +99,7 @@ public class CRI_01 {
 		PageCriteres pageCrit4 = pageNouvCrit3.annulation(driver);
 		Thread.sleep(1000);
 		
-		// Modification critère "sauver et continuer"
+		// Modification critère "sauver et continuer" sans enregistrer
 		PageCreerTypeCritere pageNouvCrit4 = pageCrit4.modifierCritere(driver);
 		assertEquals("Modifier Type de critère: Test bouton [Sauver et continuer]", pageNouvCrit4.titreModifier.getText());
 		TechTools.inputText(pageNouvCrit4.champNom, "Critère - Test bouton [Sauver et continuer] 2");
@@ -107,7 +107,32 @@ public class CRI_01 {
 		Thread.sleep(1000);
 		assertEquals("Test bouton [Sauver et continuer]",pageCrit5.critSauvModif.getText());
 		
-		// 
+		// Modification critère "sauver et continuer" puis enregistrement utilisation de sauver et continuer
+		PageCreerTypeCritere pageNouvCrit5 = pageCrit5.modifierCritereNom(driver);
+		assertEquals("Modifier Type de critère: Test bouton [Sauver et continuer]", pageNouvCrit5.titreModifier.getText());
+		TechTools.inputText(pageNouvCrit5.champNom, "Critère - Test bouton [Sauver et continuer] 2");
+		pageNouvCrit5.btnSauverContinuer.click();
+		Thread.sleep(2000);
+		//assertEquals("Type de critère \"Test bouton [Sauver et continuer] 2\" enregistré", pageNouvCrit5.messageCreationOK2.getText());
+		//assertEquals("Modifier Type de critère: Test bouton [Sauver et continuer] 2", pageNouvCrit5.titreModifier.getText());
+		
+		// Retour page "critères" et vérification avant suppression
+		PageCriteres pageCrit6 = pageNouvCrit5.annulation(driver);
+		assertEquals("Critère - Test bouton [Sauver et continuer] 2", pageCrit6.titreSauvModif2.getText());
+		pageCrit6.btnSupprimer.click();
+		Thread.sleep(2000);
+		assertEquals ("Supprimer Type de critère \"Critère - Test bouton [Sauver et continuer] 2\". Êtes-vous sûr ?", pageCrit6.messageSuppression.getText());
+		assertTrue(pageCrit6.btnConfirmSup.isEnabled());
+		assertTrue(pageCrit6.btnAnnulerSup.isEnabled());
+		PageCriteres pageCrit7 = pageCrit6.annulerSuppression(driver);
+		assertEquals("Critère - Test bouton [Sauver et continuer] 2", pageCrit7.titreSauvModif2.getText());
+		pageCrit7.btnSupprimer.click();
+		assertEquals ("Supprimer Type de critère \"Critère - Test bouton [Sauver et continuer] 2\". Êtes-vous sûr ?", pageCrit7.messageSuppression.getText());
+		assertTrue(pageCrit7.btnConfirmSup.isEnabled());
+		assertTrue(pageCrit7.btnAnnulerSup.isEnabled());
+		PageCriteres pageCrit8 = pageCrit7.confimSuppression(driver);
+		Thread.sleep(2000);
+		assertEquals("Type de critère \"Critère - Test bouton [Sauver et continuer] 2\" supprimé", pageCrit8.messageConfirmSup.getText());
+		assertFalse(pageCrit8.titreSauvModif2.getText()=="Critère - Test bouton [Sauver et continuer] 2");
 	}
-
 }

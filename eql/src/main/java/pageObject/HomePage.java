@@ -33,7 +33,7 @@ public class HomePage {
 	@FindBy (xpath="//a[contains(text(),'Machines')]")
 	public WebElement machines;
 	// Sous-Menu "Critères"
-	@FindBy (xpath="//a[contains(text(),'Critères')]")
+	@FindBy (xpath="//a[contains(text(),'Critère')]")
 	public WebElement criteres;
 	//Sous-menu "Calendriers"
 	@FindBy (xpath="//a[contains(text(),'Calendriers')]")
