@@ -1,51 +1,38 @@
 package supportTools;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
+import java.sql.DriverManager;
+import java.sql.Connection;
 import java.sql.SQLException;
-import org.dbunit.Assertion;
-import org.dbunit.IDatabaseTester;
-import org.dbunit.JdbcDatabaseTester;
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.ITable;
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.operation.DatabaseOperation;
+
+import org.apache.ibatis.jdbc.ScriptRunner;
 
 
 public class DBTools {
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/hotel";
-	private static final String USER = "username";
-	private static final String PASSWORD = "password";
-
-	private static IDataSet readDataSet (String filename) throws Exception{
-		return new FlatXmlDataSetBuilder().build(new File(filename));
-	}
-
-	public static void insertData(String path_to_file) throws Exception {
-		IDataSet dataset = readDataSet(path_to_file);
-		IDatabaseTester databaseTester = new JdbcDatabaseTester(DRIVER, JDBC_URL, USER, PASSWORD);
-		databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
-		databaseTester.setDataSet(dataset);
-		databaseTester.onSetup();
-	}
-
-	public static void deleteAllData(String path_to_file) throws Exception {
-		IDataSet dataset = readDataSet(path_to_file);
-		IDatabaseTester databaseTester = new JdbcDatabaseTester(DRIVER, JDBC_URL, USER, PASSWORD);
-		databaseTester.setSetUpOperation(DatabaseOperation.DELETE_ALL);
-		databaseTester.setDataSet(dataset);
-		databaseTester.onSetup();
-	}
+	private static final String DRIVER = "org.postgresql.Driver";
+	private static final String JDBC_URL = "jdbc:postgresql://127.0.0.1:5432/libreplan";
+	private static final String USER = "libreplan";
+	private static final String PASSWORD = "libreplan";
 	
-	public static void compareData(String table, String path_to_file, String... col) throws SQLException, Exception {
-		IDatabaseTester databaseTester = new JdbcDatabaseTester(DRIVER, JDBC_URL, USER, PASSWORD);
-		IDataSet databaseDataSet = databaseTester.getConnection().createDataSet();
-		ITable actualTable =databaseDataSet.getTable(table);
-		IDataSet expectedDataSet=readDataSet(path_to_file);
-		ITable expectedTable =expectedDataSet.getTable(table);
-		String tab[]= col;
-		Assertion.assertEqualsIgnoreCols(expectedTable, actualTable, tab);
-		}
-
+	public static void setDataBase(String sql_path) throws ClassNotFoundException, SQLException, FileNotFoundException {
+		
+		// Load, in my case, postgreSQL jdbc driver
+		Class.forName(DRIVER);
+		
+		// Create Connection to database
+		Connection connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
+		
+		// Initialize the script runner
+		ScriptRunner sr = new ScriptRunner(connection);
+		
+		// Creating a reader object
+		Reader reader = new BufferedReader(new FileReader(sql_path));
+		
+		// Running the script
+		sr.runScript(reader);
+	}
 
 }

@@ -31,19 +31,19 @@ public class PageParticipants {
 	public WebElement titreColonne6;
 	
 	// Champ de recherche "filtré par"
-	@FindBy (xpath="")
+	@FindBy (xpath="//table/tbody/tr/td/table/tbody/tr/td[3]/span/i/input")
 	public WebElement champFiltrePar;
 	
 	// Icone "loupe"
-	@FindBy (xpath="")
+	@FindBy (xpath="//table/tbody/tr/td/table/tbody/tr/td[3]/span/i/i")
 	public WebElement iconeLoupe;
 	
 	// Champ "Détails personnels"
-	@FindBy (xpath="")
+	@FindBy (xpath="//table/tbody/tr/td/table/tbody/tr/td[7]/input")
 	public WebElement champDetailsPerso;
 	
 	// Bouton bleu plus d'options
-	@FindBy (xpath="")
+	@FindBy (xpath="//td[text()='Plus d'options']")
 	public WebElement btnPlusOption;
 	
 	// Bouton vert "filtre"
@@ -51,7 +51,7 @@ public class PageParticipants {
 	public WebElement btnFiltre;
 	
 	// Bouton créer un participant
-	@FindBy (xpath = "")
+	@FindBy (xpath = "//td[contains(text(), 'Créer')]")
 	public WebElement btnCreer;
 	
 	
