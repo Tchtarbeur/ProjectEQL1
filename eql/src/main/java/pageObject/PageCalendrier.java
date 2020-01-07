@@ -27,6 +27,30 @@ public class PageCalendrier {
 	@FindBy (xpath="//td[contains(text(),'Créer')]")
 	public WebElement boutonCreer;
 	
+	//Titre de la page
+	@FindBy (xpath="//div[@class='z-window-embedded-header']")
+	public WebElement titrePage;
+	
+	//Bouton arborescence de la 1ère ligne
+	@FindBy (xpath="//span[contains(@class,'z-dottree-ico')]")
+	public WebElement boutonArborescence;
+	
+	//Ligne Dérivé dans le tableau
+	@FindBy (xpath="//tr[2][@class='z-treerow']")
+	public WebElement ligneDerive;
+	
+	//Bouton Créer une copie de la 1ère ligne
+	@FindBy (xpath="//tr[1]//span[@title='Créer une copie']")
+	public WebElement creerCopie;
+	
+	//Message info
+	@FindBy (xpath="//div[@class='message_INFO']")
+	public WebElement mInfo;
+	
+	//2ème calendrier créé
+	@FindBy (xpath="//tr[3]//span[2]")
+	public WebElement cal2;
+	
 	// Accés page "Creer Calendrier"
 		public PageCreerCalendrier allerSurPageCreerCal (WebDriver driver) {
 			Actions a = new Actions(driver);
@@ -39,6 +63,12 @@ public class PageCalendrier {
 			Actions a = new Actions(driver);
 			e.click();
 			return PageFactory.initElements(driver, PageCreerDerive.class);
+		}
+		
+	//Accès page "Creer Calendrier" avoir avoir cliquer sur "Creer une copie"
+		public PageCreerCalendrier creerCopie (WebDriver driver) {
+			creerCopie.click();
+			return PageFactory.initElements(driver, PageCreerCalendrier.class);
 		}
 }
 

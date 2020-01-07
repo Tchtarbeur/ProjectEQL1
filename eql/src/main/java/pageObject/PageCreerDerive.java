@@ -10,7 +10,8 @@ import supportTools.TechTools;
 
 public class PageCreerDerive {
 	// Champ "Nom1"
-	@FindBy (xpath="//td[@class='z-row-inner']/child::div[@class='z-row-cnt z-overflow-hidden']/child::input[@class='z-textbox']")
+	//@FindBy (xpath="//td[@class='z-row-inner']/child::div[@class='z-row-cnt z-overflow-hidden']/child::input[@class='z-textbox']")
+	@FindBy (xpath="//td[2]//input[contains(@class,'z-textbox')]")
 	public WebElement champNom;
 	
 	// Message d'erreur "le champ ne peux pas être vide"
@@ -45,6 +46,10 @@ public class PageCreerDerive {
 	@FindBy (xpath="//div[@class='message_INFO']/child::span[@class='z-label']")
 	public WebElement messageValidation;
 	
+	//2ème message de validation
+	@FindBy (xpath="//tr[5]//div[@class='message_INFO']/child::span[@class='z-label']")
+	public WebElement messageValidation2;
+
 	
 	//Remplir le champ "Nom"
 	public void saisirNom (String nom) {
@@ -69,6 +74,12 @@ public class PageCreerDerive {
 		Actions b = new Actions(driver);
 		b.moveToElement(erreur).build().perform();
 		erreur.click();
+	}
+	
+	//Cliquer sur le bouton Annuler pour retourner sur la page Calendrier
+	public PageCalendrier cliqueSurAnnuler(WebDriver driver) {
+		boutonAnnuler.click();
+		return PageFactory.initElements(driver, PageCalendrier.class);
 	}
 	
 }
