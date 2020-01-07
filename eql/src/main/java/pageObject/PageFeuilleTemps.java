@@ -188,16 +188,16 @@ public class PageFeuilleTemps {
 	public void travailTotalCroissant (WebDriver driver) {
 		for (int i=2; i<5; i++) {
 			WebElement travailTotal1 = travailTotal;
-			//transformer en Date 1er WebElement
+			//transformer en int 1er WebElement
 			String s1 = travailTotal1.getText();
 			int int1 = Integer.parseInt(s1);	
-			//transformer en Date 2ème WebElement avec xpath variable
+			//transformer en int 2ème WebElement avec xpath variable
 			WebElement travailTotal2 = driver.findElement(By.xpath("//div[3]/table[1]/tbody[2]/tr["+i+"]/td[4]//span[1]"));
 			String s2 = travailTotal2.getText();
 			int int2 = Integer.parseInt(s2);
-			//Comparer les 2 dates
+			//Comparer les 2 int
 			assertTrue (int1<int2);
-			//modifier 1ère date
+			//modifier 1ère int
 			travailTotal1= travailTotal2;
 		}
 
@@ -206,16 +206,16 @@ public class PageFeuilleTemps {
 	public void travailTotalDecroissant (WebDriver driver) {
 		for (int i=2; i<5; i++) {
 			WebElement travailTotal1 = travailTotal;
-			//transformer en Date 1er WebElement
+			//transformer en int 1er WebElement
 			String s1 = travailTotal1.getText();
 			int int1 = Integer.parseInt(s1);	
-			//transformer en Date 2ème WebElement avec xpath variable
+			//transformer en int 2ème WebElement avec xpath variable
 			WebElement travailTotal2 = driver.findElement(By.xpath("//div[3]/table[1]/tbody[2]/tr["+i+"]/td[4]//span[1]"));
 			String s2 = travailTotal2.getText();
 			int int2 = Integer.parseInt(s2);
-			//Comparer les 2 dates
+			//Comparer les 2 int
 			assertTrue (int1>int2);
-			//modifier 1ère date
+			//modifier 1ère int
 			travailTotal1= travailTotal2;
 		}
 

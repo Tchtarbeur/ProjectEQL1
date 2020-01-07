@@ -33,6 +33,18 @@ public class PageCreerCalendrier {
 	@FindBy (xpath="//td[@class='z-button-cm'][contains(text(),'Annuler')]")
 	public WebElement boutonAnnuler;
 	
+	//Titre de la page
+	@FindBy (xpath="//div[@class='z-window-embedded-header']//td[1]")
+	public WebElement titre;
+	
+	//Champ "Titre"
+	@FindBy (xpath="//tr[@valign='top']/child::td[@style='height:100%']/child::span[@class='z-label']")
+	public WebElement champType;
+	
+	//Message d'erreur
+	@FindBy (xpath="//div[@class='message_WARNING']")
+	public WebElement mErreur;
+	
 	//Remplir le champ "Nom"
 	public void saisirNom (String nom) {
 		TechTools.inputText(champNom, nom);

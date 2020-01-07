@@ -120,10 +120,65 @@ public class CAL_01 {
 		pageCreerDerive.saisirNom(" Calendrier - Test Calendrier Dérivé");
 		
 		//Cliquer sur "Enregistrer et continuer"
-		//pageCreerDerive.enregistrerEtContinuer();
+		pageCreerDerive.enregistrerEtContinuer();
 		
 		//Vérification de l'affichage du message de validation "Calendrier de base "Calendrier - Test Calendrier Dérivé" enregistré"
-		//assertEquals("Le message de validation n'apparraît pas","Calendrier - Test Calendrier Dérivé",pageCreerDerive.messageValidation.getText());
+		assertEquals("Le message de validation n'apparraît pas","Calendrier de base \" Calendrier - Test Calendrier Dérivé\" enregistré",pageCreerDerive.messageValidation2.getText());
+		
+		//Cliquer sur Annuler
+		PageCalendrier pageCal2 = pageCreerDerive.cliqueSurAnnuler(driver);
+		
+		//Refresh pour enlever les messages d'infos
+		driver.navigate().refresh();
+		
+		//Vérification page Liste de calendriers
+		assertEquals ("Liste de calendriers",pageCal2.titrePage.getText());
+		
+		//Vérification dérivés considéré en sous-calendrier
+		//Dérivé affiché quand arborescence ouverte
+		assertTrue(pageCal2.ligneDerive.isDisplayed());
+		
+		//Dérivé non affiché quand arborescence fermée
+		pageCal2.boutonArborescence.click();
+		assertFalse (pageCal2.ligneDerive.isDisplayed());
+		
+		//Clique sur "Creer copie"
+		PageCreerCalendrier pageCreerCal2 = pageCal2.creerCopie(driver);
+		
+		//Vérifier titre page 
+		assertEquals ("Créer Calendrier: Calendrier - Test 1", pageCreerCal2.titre.getText());
+		
+		//Vérification champ nom correctement rempli
+		assertEquals ("Calendrier - Test 1",pageCreerCal2.champNom.getAttribute("value"));
+	
+		//Vérification champ type correctement rempli
+		assertEquals ("Calendrier source",pageCreerCal2.champType.getText());
+		
+		//Clique sur "Enregistrer et continuer"
+		pageCreerCal2.boutonEnregistrerEtContinuer.click();
+		
+		//Vérification message d'erreur
+		assertEquals ("Calendrier - Test 1 existe déjà", pageCreerCal2.mErreur.getText());
+		
+		//Modification du nom
+		pageCreerCal2.saisirNom("Calendrier - Test 2");
+		
+		//Cliquer sur enregistrer
+		PageCalendrier pageCal3 = pageCreerCal2.retourSurPageCal(driver);
+		
+		// Vérification retour sur page "Liste des calendriers"
+		assertEquals ("Liste de calendriers",pageCal3.titrePage.getText());
+		
+		//Vérification contenu du message d'information
+		assertEquals ("Calendrier de base \"Calendrier - Test 2\" enregistré",pageCal3.mInfo.getText());
+		
+		//Vérification que le 2ème calendrier n'est pas un sous calendrier du premier
+		//2ème calendrier visible quand arborescence ouverte
+		assertTrue (pageCal3.cal2.isDisplayed());
+		
+		//2ème calendrier visible quand arborescence fermée
+		pageCal3.boutonArborescence.click();
+		assertTrue (pageCal3.cal2.isDisplayed());
 	}
 
 }
