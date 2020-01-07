@@ -55,14 +55,14 @@ public class GRF_01 {
 		assertEquals("ID", partPage.titreColonne3.getText());
 		assertEquals("Code", partPage.titreColonne4.getText());
 		assertEquals("En file", partPage.titreColonne5.getText());
-		assertEquals("Opération", partPage.titreColonne6.getText());
+		assertEquals("Opérations", partPage.titreColonne6.getText());
 		
 		// Créer un participant
 		PageCreerParicipant creerPart = partPage.creerPartPage(driver);
 		
 		// Vérification de l'onglet "Données Personnelles"
 		// Vérifier Bloc "Données de Base"
-		creerPart.champPrenom.getSize();
+		//creerPart.champPrenom.getSize();
 		
 		// Vérifier Bloc "Utilisateur lié"
 		

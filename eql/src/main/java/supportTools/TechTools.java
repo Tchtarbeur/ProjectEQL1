@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.Select;
 
 public class TechTools {
@@ -71,7 +72,8 @@ public class TechTools {
 	public void checkColor (WebElement e, String colCode) throws Exception{
 		String color = e.getCssValue("color");
 		//String color = e.getCssValue("background-color");
-		assertEquals("Erreur de couleur" ,color, colCode);
+		String hex = Color.fromString(color).asHex();
+		assertEquals("Erreur de couleur" ,colCode, hex);
 	}
 
 }
