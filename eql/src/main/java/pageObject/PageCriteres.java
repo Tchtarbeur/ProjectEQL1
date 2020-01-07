@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageCriteres {
 	
-		// colonne "Nom"
+		// Colonne "Nom"
 		@FindBy (xpath="//tbody[2]/tr[1]/th[1]/div")
 		public WebElement titreColonne1;
 		
@@ -28,12 +28,24 @@ public class PageCriteres {
 		public WebElement titreColonne5;
 		
 		// Bouton créer
-		@FindBy (xpath="//td[contains(text(),'Créer']")
+		@FindBy (xpath="//td[contains(text(), 'Créer')]")
 		public WebElement btnCreer;
+		
+		// Bouton modifier "critère sauver et continuer"
+		@FindBy (xpath="//table/tbody[2]/tr[5]/td[5]/div/table/tbody/tr/td/table/tbody/tr/td[1]/span/table/tbody/tr[2]/td[2]/img")
+		public WebElement btnModifCritSM;
+		
+		// Ligne Modifier
+		@FindBy (xpath ="//table/tbody[2]/tr[5]/td[1]/div/span")
+		public WebElement critSauvModif;
 		
 		public PageCreerTypeCritere creerCriteres (WebDriver driver) {
 			btnCreer.click();
 			return PageFactory.initElements(driver, PageCreerTypeCritere.class);
 		}
-
+		
+		public PageCreerTypeCritere modifierCritere (WebDriver driver) {
+			btnModifCritSM.click();
+			return PageFactory.initElements(driver, PageCreerTypeCritere.class);
+		}
 }
