@@ -47,12 +47,28 @@ public class PageParticipants {
 	public WebElement btnPlusOption;
 	
 	// Bouton vert "filtre"
-	@FindBy (xpath="")
+	@FindBy (xpath="//td[text()='Filtre']")
 	public WebElement btnFiltre;
 	
 	// Bouton créer un participant
 	@FindBy (xpath = "//td[contains(text(), 'Créer')]")
 	public WebElement btnCreer;
+	
+	// Message participant créé
+	@FindBy (xpath= "//span[contains(text(), 'Participant enregistré']")
+	public WebElement messageCreation;
+	
+	// Resultat recherche
+	@FindBy (xpath= "//span[text()='Jean']")
+	public WebElement rechercheResult;
+	
+	// Champ "période active de :"
+	@FindBy (xpath="//")
+	public WebElement champDebutPerAct;
+	
+	// Champ "fin période active"
+	@FindBy (xpath="")
+	public WebElement champFinPerAct;
 	
 	
 	public PageCreerParicipant creerPartPage (WebDriver driver) {
